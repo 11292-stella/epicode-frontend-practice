@@ -1,0 +1,186 @@
+header h1 {
+  text-align: center;
+  color: red;
+}
+
+body {
+  background-color: rgb(255, 198, 196);
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  ul {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  li {
+    font-family: "Courier New", Courier, monospace;
+  }
+}
+
+button.primary {
+  background-color: red;
+  color: aliceblue;
+
+  &:hover {
+    background-color: aqua;
+    color: black;
+  }
+}
+
+button.secondary {
+  background-color: rgb(0, 68, 255);
+  color: aliceblue;
+
+  &:hover {
+    background-color: rgb(60, 255, 0);
+    color: black;
+  }
+}
+
+nav {
+  ul {
+    li {
+      text-decoration: none;
+      &:nth-last-of-type(2) {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+main #main-paragraph {
+  font: {
+    family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    weight: lighter;
+    size: 0.8em;
+  }
+  border: {
+    color: red;
+    width: 3px;
+    style: dotted;
+    radius: 30px;
+  }
+}
+
+$my-margin: 25px;
+
+h1 {
+  margin-top: $my-margin;
+}
+
+main p {
+  margin-left: $my-margin;
+}
+
+ul li {
+  margin-left: $my-margin - 10px;
+}
+
+$primary: rgb(152, 152, 205);
+$secondary: rgb(255, 0, 174);
+
+@mixin centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+$standard-width: 200px;
+$standard-height: 200px;
+$standard-border: 2px solid $primary;
+
+.box {
+  width: $standard-width;
+  height: $standard-height;
+  border: $standard-border;
+  @include centered;
+}
+
+@mixin custom-styless($my-backgroung) {
+  margin-top: 20px;
+  border: $standard-border;
+  background-color: $my-backgroung;
+}
+
+.box-2 {
+  @include centered;
+  width: 150px;
+  height: 150px;
+  @include custom-styless(rgb(174, 105, 21));
+}
+
+@mixin font-interpolation($property, $value) {
+  font-#{$property}: $value;
+}
+
+.el-1 {
+  @include font-interpolation("size", 24px);
+}
+
+.el-2 {
+  @include font-interpolation("weight", 700);
+}
+
+@mixin custom-margin($property, $value) {
+  margin-#{$property}: $value;
+}
+
+.el-3 {
+  @include custom-margin("top", 12px);
+}
+.el4 {
+  @include custom-margin("right", 10px);
+}
+
+$sizes: 12px, 16px, 20px, 24px;
+
+@each $single-size in $sizes {
+  //$individual-size nome che scelgo io
+  //prima interazione 12px,seconda 16px..
+  .text-#{$single-size} {
+    font-size: $single-size;
+  }
+}
+
+$colors: blue, red, green, purple;
+
+@each $color in $colors {
+  .bg-#{$color} {
+    background-color: $color;
+  }
+  .text-#{$color} {
+    color: $color;
+  }
+}
+
+$sizes-map: (
+  sm: 12px,
+  md: 16px,
+  lg: 20px,
+);
+
+@each $name, $value in $sizes-map {
+  .text-#{$name} {
+    font-size: $value;
+  }
+}
+
+@mixin generate-margin($quantity) {
+  @if $quantity > 10 {
+    margin: #{$quantity}px;
+  } @else {
+    margin: 0;
+  }
+}
+
+.main-margin {
+  @include generate-margin(30);
+}
+
+.no-margin {
+  @include generate-margin(0);
+}

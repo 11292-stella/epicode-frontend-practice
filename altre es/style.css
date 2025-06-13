@@ -1,0 +1,18 @@
+#listaform input {
+    border-radius: 15px;
+    margin-bottom: 20px;
+   font-size: 30px;
+   
+    
+}
+
+button {
+    font-size: 20px;
+    border-radius: 50px;
+    background-color: rgb(247, 107, 31);
+}
+
+body {
+    text-align: center;
+    background-color: rgb(213, 100, 241);
+}
